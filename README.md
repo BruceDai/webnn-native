@@ -51,7 +51,7 @@ Get the source code as follows:
 # Clone the repo as "webnn-native"
 > git clone https://github.com/webmachinelearning/webnn-native.git webnn-native && cd webnn-native
 
-# Bootstrap the gclient configuration
+# Bootstrap the gclient configuration. If you want to run examples under ./node folder with WebNN-native Binding for Node.js, please modify the value of 'checkout_samples' var in ./DEPS file to be True firstly.
 > cp scripts/standalone.gclient .gclient
 
 # Fetch external dependencies and toolchains with gclient

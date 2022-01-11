@@ -8,6 +8,7 @@ vars = {
   'github_git': 'https://github.com',
 
   'dawn_standalone': True,
+  'checkout_samples': False,
 }
 
 deps = {
@@ -19,10 +20,12 @@ deps = {
     'url': '{github_git}/webmachinelearning/test-data.git@b6f1565fefc103705a6ff580067eae7bb9d3b351'
   },
   'node/third_party/webnn-samples': {
-    'url': '{github_git}/webmachinelearning/webnn-samples.git@d358fe623be5236736ebc2d896cfbba2af4fd348'
+    'url': '{github_git}/webmachinelearning/webnn-samples.git@d358fe623be5236736ebc2d896cfbba2af4fd348',
+    'condition': 'checkout_samples'
   },
   'node/third_party/webnn-samples/test-data': {
-    'url': '{github_git}/webmachinelearning/test-data.git@b6f1565fefc103705a6ff580067eae7bb9d3b351'
+    'url': '{github_git}/webmachinelearning/test-data.git@b6f1565fefc103705a6ff580067eae7bb9d3b351',
+    'condition': 'checkout_samples'
   },
   'third_party/stb': {
     'url': '{github_git}/nothings/stb@b42009b3b9d4ca35bc703f5310eedc74f584be58'
