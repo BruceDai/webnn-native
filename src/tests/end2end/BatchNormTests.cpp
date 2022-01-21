@@ -60,6 +60,41 @@ class BatchNormTests : public WebnnTest {
     ml::GraphBuilder builder;
 };
 
+TEST_F(BatchNormTests, BatchNorm3DInputAxis0) {
+    Tensor input = {{3, 1, 2}, {-1, 0, 1, 2, 3, 4}};
+    Tensor mean = {{3}, {0, 3, 6}};
+    Tensor variance = {{3}, {1.0, 1.5, 2.0}};
+    Tensor scale = {{3}, {1.0, 1.5, 2.0}};
+    Tensor bias = {{3}, {0, 1, 2}};
+    ml::BatchNormOptions options;
+    options.epsilon = 1e-3;
+    options.axis = 0;
+
+    std::vector<float> expectedValue = {
+        -0.9995003746877732, 0, -1.4486736542238683, -0.22433682711193415, -2.241580424529414,
+        -0.8277202830196093,
+    };
+
+    CheckBatchNorm(input, mean, variance, expectedValue, scale, bias, options);
+}
+
+TEST_F(BatchNormTests, BatchNorm3DInputAxis2) {
+    Tensor input = {{2, 1, 3}, {-1, 0, 1, 2, 3, 4}};
+    Tensor mean = {{3}, {0, 3, 6}};
+    Tensor variance = {{3}, {1.0, 1.5, 2.0}};
+    Tensor scale = {{3}, {1.0, 1.5, 2.0}};
+    Tensor bias = {{3}, {0, 1, 2}};
+    ml::BatchNormOptions options;
+    options.epsilon = 1e-3;
+    options.axis = 2;
+
+    std::vector<float> expectedValue = {
+        -0.9995003746877732, 0, -1.4486736542238683, -0.22433682711193415, -2.241580424529414,
+        -0.8277202830196093,
+    };
+    CheckBatchNorm(input, mean, variance, expectedValue, scale, bias, options);
+}
+
 TEST_F(BatchNormTests, BatchNormNchw) {
     Tensor input = {{1, 2, 1, 3}, {-1, 0, 1, 2, 3, 4}};
     Tensor mean = {{2}, {0, 3}};
