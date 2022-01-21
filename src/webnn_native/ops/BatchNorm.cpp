@@ -47,11 +47,6 @@ namespace webnn_native { namespace op {
             return maybeError;
         }
 
-        // The input is 4-D tensor.
-        if (mInputs[0]->Shape().size() != 4) {
-            return DAWN_VALIDATION_ERROR("Input is not a 4D tensor.");
-        }
-
         // The mean is 1-D tensor.
         auto mean = mInputs[1];
         if (mean->Shape().size() != 1) {
@@ -79,7 +74,7 @@ namespace webnn_native { namespace op {
         }
         // When input is a 4-D tensor of the "nchw" or "nhwc" layout, options.axis should be set to
         // 1 or 3 respectively.
-        if (mOptions.axis != 1 && mOptions.axis != 3) {
+        if (mInputs[0]->Shape().size() == 4 && mOptions.axis != 1 && mOptions.axis != 3) {
             return DAWN_VALIDATION_ERROR("Argument axis is not supported.");
         }
 
