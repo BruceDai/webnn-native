@@ -72,7 +72,7 @@ jobs:
       run: |
         cd baseline
         echo "Run End2End Tests..."
-        out\Release\webnn_end2end_tests.exe --gtest_output=json:${{ github.workspace }}\..\baseline_end2endtests.json
+        out\Release\webnn_end2end_tests.exe --gtest_filter=SoftmaxTests.* --gtest_output=json:${{ github.workspace }}\..\baseline_end2endtests.json
         cd ..
         rmdir /s /q baseline
 
@@ -122,7 +122,7 @@ jobs:
       run: |
         cd update
         echo "Run End2End Tests..."
-        out\Release\webnn_end2end_tests.exe --gtest_output=json:${{ github.workspace }}\..\update_end2endtests.json || true
+        out\Release\webnn_end2end_tests.exe --gtest_filter=SoftmaxTests.* --gtest_output=json:${{ github.workspace }}\..\update_end2endtests.json || true
 
     - name: Regression check
       run: |
