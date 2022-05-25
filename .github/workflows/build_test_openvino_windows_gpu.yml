@@ -1,0 +1,21 @@
+name: OpenVINO backend (Windows / GPU)
+
+on: [push, pull_request]
+
+jobs:
+
+  job:
+    runs-on: [self-hosted, Windows, X64, gpu]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: main
+        path: baseline
+        fetch-depth: 0
+
+    - name: Ensure the right machine
+      run: |
+        hostname
+        dir 'C:\Program Files (x86)\Intel\openvino_2021\'
+
