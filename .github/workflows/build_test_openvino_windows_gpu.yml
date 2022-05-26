@@ -8,14 +8,76 @@ jobs:
     runs-on: [self-hosted, Windows, X64, gpu]
 
     steps:
+    - name: Install OpenVINO Toolkit
+      shell: cmd
+      run: |
+        "C:\Program Files (x86)\Intel\openvino_2021\bin\setupvars.bat"
+
     - uses: actions/checkout@v2
       with:
         ref: main
         path: baseline
         fetch-depth: 0
 
-    - name: Ensure the right machine
+    - name: Update DEPS for main branch
       run: |
-        hostname
-        dir 'C:\Program Files (x86)\Intel\openvino_2021\'
+        cd baseline
+        (Get-Content -path .\DEPS -Raw) -replace "'checkout_onnxruntime': True", "'checkout_onnxruntime': False" | Set-Content -path .\DEPS
+        (Get-Content -path .\DEPS -Raw) -replace "'checkout_samples': True", "'checkout_samples': False" | Set-Content -path .\DEPS
+    - name: Sync code for main branch
+      shell: cmd
+      run: |
+        echo %http_proxy%
+        echo %https_proxy%
+        cd baseline
+        copy scripts\standalone.gclient .gclient
+        gclient sync
+    - name: Generate project for main branch
+      shell: cmd
+      run: |
+        cd baseline
+        gn gen out\Release --args="webnn_enable_openvino=true is_debug=false"
+    - name: Build for main branch
+      shell: cmd
+      run: |
+        cd baseline
+        ninja -C out\Release
+    - name: Test for main branch
+      shell: cmd
+      run: |
+        baseline\workflow_scripts\test_by_openvino_windows.bat baseline || true
+        rmdir /s /q baseline
+    - uses: actions/checkout@v2
+      with:
+        path: update
+        fetch-depth: 0
 
+    - name: Update DEPS for update branch
+      run: |
+        cd update
+        (Get-Content -path .\DEPS -Raw) -replace "'checkout_onnxruntime': True", "'checkout_onnxruntime': False" | Set-Content -path .\DEPS
+        (Get-Content -path .\DEPS -Raw) -replace "'checkout_samples': True", "'checkout_samples': False" | Set-Content -path .\DEPS
+    - name: Sync latest code
+      shell: cmd
+      run: |
+        cd update
+        copy scripts\standalone.gclient .gclient
+        gclient sync
+    - name: Generate project for update branch
+      shell: cmd
+      run: |
+        cd update
+        gn gen out\Release --args="webnn_enable_openvino=true is_debug=false"
+    - name: Build for update branch
+      shell: cmd
+      run: |
+        cd update
+        ninja -C out\Release
+    - name: Test for update branch
+      shell: cmd
+      run: |
+        update\workflow_scripts\test_by_openvino_windows.bat update || true
+    - name: Regression check
+      run: |
+        echo "Regression checking..."
+        python update\workflow_scripts\regression_check.py ${{ github.workspace }}\..\baseline_end2endtests.json ${{ github.workspace }}\..\update_end2endtests.json
