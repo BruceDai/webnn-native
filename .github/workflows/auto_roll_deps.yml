@@ -54,14 +54,14 @@ jobs:
       run: |
         echo "token: $GH_T"
       env:
-        GH_T: ${{ secrets.REPO_ACCESS_TOKEN }}
+        GH_T: ${{ secrets.PAT }}
   
     - name: Create Pull Request
       if: steps.roll_dep.outcome == 'success'
       uses: peter-evans/create-pull-request@v4
       with:
         title: Roll ${{ matrix.dep_path }}
-        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        token: ${{ secrets.PAT }}
         branch: autoroller/roll
         branch-suffix: short-commit-hash
         delete-branch: true
