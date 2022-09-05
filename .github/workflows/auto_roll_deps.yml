@@ -12,6 +12,9 @@ jobs:
     runs-on: windows-2019
 
     steps:
+    - name: date
+      run: |
+        date
     - name: Git config
       run: |
         git config --global core.autocrlf false
