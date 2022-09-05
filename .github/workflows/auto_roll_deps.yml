@@ -3,20 +3,14 @@ name: 'Auto Roll DEPS'
 on:
   workflow_dispatch:
 
-  schedule:
-    # Every Monday at 3 am
-    - cron: "0 3 * * 1"
-
-permissions:
-  actions: read/write
-  contents: read
-  pull-requests: write
-
 jobs:
   deps:
     runs-on: windows-2019
 
     steps:
+    - name: Date
+      run: |
+        date
     - name: Git config
       run: |
         git config --global core.autocrlf false
