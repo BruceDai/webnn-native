@@ -65,7 +65,7 @@ deps = {
     'url': '{github_git}/google/XNNPACK.git@ca444626d2b59a7548e1b4934d08f7b3e9db2f20'
   },
   'third_party/onnxruntime': {
-    'url': '{github_git}/microsoft/onnxruntime.git@0d9030e79888d1d5828730b254fedc53c7b640c1',
+    'url': '{github_git}/microsoft/onnxruntime.git@14365b67a0de0acc1e6423477d7363bd5a98f0d7',
     'condition': 'checkout_onnxruntime',
   },
 
