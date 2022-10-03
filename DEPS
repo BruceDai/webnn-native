@@ -24,23 +24,23 @@ vars = {
 deps = {
   # Dependencies required for tests.
   'node/third_party/webnn-polyfill': {
-    'url': '{github_git}/webmachinelearning/webnn-polyfill.git@6a9754420d9c761cc8d9ecb7625b061d849bca6f',
+    'url': '{github_git}/webmachinelearning/webnn-polyfill.git@09c8026ec5974846e82aa5074881bebc553548c0',
     'condition': 'checkout_polyfill',
   },
   'node/third_party/webnn-polyfill/test-data': {
-    'url': '{github_git}/webmachinelearning/test-data.git@fc566a1acfd8750e270261c369e58e7087489bc7',
+    'url': '{github_git}/webmachinelearning/test-data.git@045017d38ea0133807fa26af9e5b030147cb2314',
     'condition': 'checkout_polyfill',
   },
   'node/third_party/webnn-samples': {
-    'url': '{github_git}/webmachinelearning/webnn-samples.git@7e77194153fe87d7d20f3cf4b1545429fb8392b9',
+    'url': '{github_git}/webmachinelearning/webnn-samples.git@d3a1463c8714429dc5ff5d5ef500b029c7e2efa9',
     'condition': 'checkout_samples'
   },
   'node/third_party/webnn-samples/test-data': {
-    'url': '{github_git}/webmachinelearning/test-data.git@d9f1537096b0fcbbef0889b540bf8ce6c8833969',
+    'url': '{github_git}/webmachinelearning/test-data.git@045017d38ea0133807fa26af9e5b030147cb2314',
     'condition': 'checkout_samples'
   },
   'third_party/stb': {
-    'url': '{github_git}/nothings/stb@af1a5bc352164740c1cc1354942b1c6b72eacb8a'
+    'url': '{github_git}/nothings/stb@8b5f1f37b5b75829fc72d38e7b5d4bcbf8a26d55'
   },
 
   # Dependencies required for code generator and infrastructure code.
@@ -50,22 +50,22 @@ deps = {
 
   # Dependencies required for backends.
   'third_party/DirectML': {
-    'url': '{github_git}/microsoft/DirectML.git@c3f16a701beeeefc9ce5b67c71b554a6903c0f67',
+    'url': '{github_git}/microsoft/DirectML.git@bf3c23d5625ee012077dbec8aa87f114e9bd08a5',
     'condition': 'checkout_win',
   },
   # GPGMM support for fast DML allocation and residency management.
   'third_party/gpgmm': {
-    'url': '{github_git}/intel/gpgmm.git@ff03c9a0cea262e534d25257512f2ba2bdb8c2d4',
+    'url': '{github_git}/intel/gpgmm.git@5197f4b507ea4a265d5a2f86d0493a6c83257e1c',
     'condition': 'checkout_win',
   },
   'third_party/oneDNN': {
-    'url': '{github_git}/oneapi-src/oneDNN.git@4a129541fd4e67e6897072186ea2817a3154eddd',
+    'url': '{github_git}/oneapi-src/oneDNN.git@10d6899fba4c6805915f6f35d6f28b78ca44dcad',
   },
   'third_party/XNNPACK': {
-    'url': '{github_git}/google/XNNPACK.git@42806cdefa7c48247b640a43024040c735d97f29'
+    'url': '{github_git}/google/XNNPACK.git@f0ef15f533bbf102bc4f0319904769b200b65161'
   },
   'third_party/onnxruntime': {
-    'url': '{github_git}/microsoft/onnxruntime.git@0d9030e79888d1d5828730b254fedc53c7b640c1',
+    'url': '{github_git}/microsoft/onnxruntime.git@0cf17b1921ce882cb8e8e058cc39d38b2eee0469',
     'condition': 'checkout_onnxruntime',
   },
 
