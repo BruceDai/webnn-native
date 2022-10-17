@@ -62,7 +62,7 @@ deps = {
     'url': '{github_git}/oneapi-src/oneDNN.git@ded5380647efcfd51a781cd49e2a6adf45d4422e',
   },
   'third_party/XNNPACK': {
-    'url': '{github_git}/google/XNNPACK.git@42806cdefa7c48247b640a43024040c735d97f29'
+    'url': '{github_git}/google/XNNPACK.git@c32d40af8972bb590d9beb8f1b3115775a564a92'
   },
   'third_party/onnxruntime': {
     'url': '{github_git}/microsoft/onnxruntime.git@0d9030e79888d1d5828730b254fedc53c7b640c1',
