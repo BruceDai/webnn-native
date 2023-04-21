@@ -6,7 +6,7 @@ jobs:
 
   job:
     name: Build MLAS backend (Windows)
-    runs-on: windows-2019
+    runs-on: windows-2022
 
     steps:
     - name: Git config
